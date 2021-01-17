@@ -36,7 +36,7 @@ namespace MD.UtilsApiService.Controllers
         public FileContentResult PDFSetPicWatermarkByFileUrl([FromForm] string inputPDFPath, [FromForm] string modelPicPath,
     [FromForm] float absoluteX, [FromForm] float absoluteY, [FromForm] float scalePercent = 40f, [FromForm] float rotationDegrees = 0f)
         {
-            NetworkStream stream = new NetworkStream()
+            //NetworkStream stream = new NetworkStream();
             byte[] inputPDFBytes = System.IO.File.ReadAllBytes(inputPDFPath);
             byte[] modelPicBytes = System.IO.File.ReadAllBytes(modelPicPath);
             var bytes = _PDFService.PDFSetPicWatermark(inputPDFBytes, modelPicBytes, absoluteX, absoluteY, scalePercent, rotationDegrees);
