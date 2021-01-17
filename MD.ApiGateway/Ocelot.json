@@ -1,0 +1,65 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/{url}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/SinaDeposit/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Options" ],
+      "ServiceName": "BjSinaDepositService",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "UseServiceDiscovery": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{url}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/Activities/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Options" ],
+      "ServiceName": "BJActivitiesService",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "UseServiceDiscovery": true
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/{url}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/Common/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Options" ],
+      "ServiceName": "BJCommonService",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "UseServiceDiscovery": true
+
+      //  ,"RateLimitOptions": {
+      //  "ClientWhitelist": [], //白名单
+      //  "EnableRateLimiting": true, //是否启用限流
+      //  "Period": "1s", //统计时间段：1s, 5m, 1h, 1d
+      //  "PeriodTimespan": 1, //多少秒之后客户端可以重试
+      //  "Limit": 10 //在统计时间段内允许的最大请求数量
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/File/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Options" ],
+      "ServiceName": "BJCommonService",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "UseServiceDiscovery": true
+
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "192.168.3.72",
+      "Port": 8500
+    }
+  },
+  "ApplicationCode": "API Gateway"
+}
